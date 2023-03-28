@@ -138,7 +138,7 @@ CRISPY_TEMPLATE_PACK ='bootstrap4'
 
 #url where a logged in user will be redirected to
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'home'
 
 #setting where the users login from
 

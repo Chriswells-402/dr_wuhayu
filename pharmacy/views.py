@@ -20,3 +20,18 @@ def home(request):
     products= product_filters.qs
     return render(request, 'products/home.html',{'products':products,'product_filters':product_filters})
     
+    #create a view for product_details
+@login_required
+def product_detail(request, product_id):
+    product = Product.objects.get(id = product_id)
+    return render(request, 'products/product_detail.html', {'product': product})
+
+#create view for issue item
+
+@login_required
+def issue_item(request):
+    pass
+
+@login_required
+def add_to_stock(request):
+    pass

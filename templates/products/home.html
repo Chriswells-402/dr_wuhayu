@@ -34,7 +34,7 @@
         <td>{{product.itemName}}</td>
         <td>{{product.totalQuantity}}</td>
         <td>UGX{{product.unitPrice}}</td>
-        <td><a href=""
+        <td><a href="{% url 'product_detail' product.id %}"
               ><input
                 type="submit"
                 value="BUY ITEM"
@@ -47,5 +47,3 @@
   </table>
 </div>
 {% endblock%}
-index.html
-Displaying index.html.
