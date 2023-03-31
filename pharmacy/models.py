@@ -23,3 +23,24 @@ class Product(models.Model):
     
     def __str__(self) :
         return self.itemName
+    
+class Sale(models.Model):
+    #the item name, the price,purchsers name, date of purchase,
+    # quantity purchased, VAT
+    item = models.ForeignKey(Product, on_delete= models.CASCADE)
+    quantity= models.IntegerField(default=0, null=False, blank=True)
+    ammountReceived= models.IntegerField(default=0, null=False, blank=True)
+    issuedTo = models.CharField(max_length=50, null=True, blank=True)
+    unitPrice= models.IntegerField(default=0, null=True, blank=True)
+    #date = models.DateTimeField(auto_now_add=True)
+    #calculating the total
+    def getTotal(self):
+        total= self.quantity * self.item.unitPrice
+        return int(total)
+    #calculating the change
+    def getChange(self):
+        change = self.getTotal() - self.ammountReceived
+        return abs(int(change))
+
+    def __str__(self):
+        return self.item.itemName    

@@ -7,8 +7,10 @@ urlpatterns = [
     path('home/', views.home, name = 'home'),
     path('', auth_views.LoginView.as_view(template_name = 'products/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'products/logout.html'), name='logout'),
-    #this route is for buying a item
+    #this lists products with buy item button
     path('home/<int:product_id>', views.product_detail, name='product_detail'),
-    path('issue_item/<str:pk>', views.issue_item, name='issue_item'),
-    path('add_to_stock/<str:pk>', views.add_to_stock, name='add_to_stock'),
+    #this route is for buying a item with a buy item button
+    path('issue_item/<str:pk>/', views.issue_item, name='issue_item'),
+    path('add_to_stock/<str:pk>/', views.add_to_stock, name='add_to_stock'),
+    path('receipt/', views.receipt, name='receipt'),
 ]
