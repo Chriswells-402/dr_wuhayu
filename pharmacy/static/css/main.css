@@ -43,3 +43,20 @@ form {
         width: 90%;
     }
 }
+footer{
+   /* display: flex;*/
+    text-align: center;
+    bottom: 0px;
+    margin-top: 200px;
+    margin-bottom: 0px;
+   /* background-color: aliceblue;*/
+    position:fixed;
+    height: 50px;
+    width: 100%;
+    padding: 2px;
+}
+
+#footer_flex p{
+    text-align: center;
+    margin-bottom: 0px;
+}    

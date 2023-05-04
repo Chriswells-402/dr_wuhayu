@@ -25,6 +25,7 @@
         <th scope="col">Quantity</th>
         <th scope="col">Unit Price(UGX)</th>
         <th scope = "col">Detail</th>
+        <th scope = "col">Remove Item</th>
       </tr>
     </thead>
     {% for product in products%}
@@ -38,6 +39,14 @@
               ><input
                 type="submit"
                 value="BUY ITEM"
+                class="btn btn-secondary btn"
+                type="button"
+            /></a></td>
+
+            <td><a href="{% url 'delete_item' product.id %}"
+              ><input
+                type="submit"
+                value="REMOVE"
                 class="btn btn-secondary btn"
                 type="button"
             /></a></td>

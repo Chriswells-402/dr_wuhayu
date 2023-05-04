@@ -1,4 +1,9 @@
 from django.db import models
+#importing user models to allow users information to be applied
+from django.contrib.auth.models import User
+
+#class CustomModelName(models.Model):
+   # user = models.ForeignKey(User)
 
 # Create your models here.
 class Stock_Category(models.Model):
@@ -32,6 +37,7 @@ class Sale(models.Model):
     ammountReceived= models.IntegerField(default=0, null=False, blank=True)
     issuedTo = models.CharField(max_length=50, null=True, blank=True)
     unitPrice= models.IntegerField(default=0, null=True, blank=True)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     #date = models.DateTimeField(auto_now_add=True)
     #calculating the total
     def getTotal(self):
@@ -41,6 +47,8 @@ class Sale(models.Model):
     def getChange(self):
         change = self.getTotal() - self.ammountReceived
         return abs(int(change))
+    def get_vat(self):
+        pass
 
     def __str__(self):
         return self.item.itemName    

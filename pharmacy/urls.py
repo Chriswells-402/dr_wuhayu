@@ -13,4 +13,7 @@ urlpatterns = [
     path('issue_item/<str:pk>/', views.issue_item, name='issue_item'),
     path('add_to_stock/<str:pk>/', views.add_to_stock, name='add_to_stock'),
     path('receipt/', views.receipt, name='receipt'),
+    path('all_sales/', views.al_sales, name='all_sales'),
+    path('receipt/<int:receipt_id>', views.receipt_detail, name ='receipt_detail'),
+    path('delete/<int:product_id>', views.delete_item, name='delete_item'),
 ]

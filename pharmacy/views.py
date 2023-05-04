@@ -7,6 +7,10 @@ from .filters import Product_filter
 #includinng our models forms included in the models file
 from .forms import Addform,Saleform
 
+#handling redirection after the deletion
+from django.http import HttpResponse, HttpResponseRedirect
+
+from django.urls import reverse
 # Create your views here.
 @login_required
 def index(request):
@@ -62,6 +66,63 @@ def receipt(request):
     sales= Sale.objects.all().order_by('-id')
     return render (request, 'products/receipt.html',{'sales':sales})
 
+
 @login_required
 def add_to_stock(request, pk):
-    pass
+    issuedItem = Product.objects.get(id = pk)
+    form = Addform(request.POST)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            added_quantity = int(request.POST['receivedQuantity'])
+            issuedItem.totalQuantity += added_quantity
+            issuedItem.save()
+
+            #To add to the remaining stock quantity is reducing
+            print(added_quantity)
+            print (issuedItem.totalQuantity)
+            return redirect('home')
+
+    return render (request, 'products/add_to_stock.html', {'form': form})
+    
+    #this is going to display all the sales made
+    
+@login_required
+def all_sales(request):
+    sales = Sale.objects.all()
+    total  = sum([items.ammountReceived for items in sales])
+    change = sum([items.getChange() for items in sales])
+    net = total - change
+    return render(request, 'products/all_sales.html',
+     {
+     'sales': sales,
+     'total': total,
+     'change': change,
+     'net': net,
+      })
+
+def al_sales(request):
+    sales = Sale.objects.all()
+    total  = sum([items.ammountReceived for items in sales])
+    change = sum([items.getChange() for items in sales])
+    net = total - change
+    return render(request, 'products/all_sales.html',
+     {
+     'sales': sales,
+     'total': total,
+     'change': change,
+     'net': net,
+      })
+@login_required
+def receipt_detail(request, receipt_id):
+    receipt = Sale.objects.get(id = receipt_id)
+    return render(request, 'products/receipt_detail.html', {'receipt': receipt})
+
+#deleting
+@login_required
+def delete_item(request, product_id):
+    delete = Product.objects.get(id = product_id)
+    delete.delete()
+    return HttpResponseRedirect(reverse('home'))
+
+

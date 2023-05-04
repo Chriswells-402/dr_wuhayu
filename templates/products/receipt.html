@@ -7,12 +7,12 @@
     <div class="card-body">
       <h3 class="card-title">Customer : {{sale.issuedTo | title}}</h3>
       <h6 class="card-text">Item : {{sale.item}}</h6>
-      <h6 class="card-text">Amount Received:  UGX{{ sale.amountReceived }}</h6>
+      <h6 class="card-text">Ammount Received:  UGX{{ sale.ammountReceived }}</h6>
       <h6 class="card-text">Quantity: {{sale.quantity }}</h6>
       <h2>Total Price :  UGX{{ sale.getTotal }}</h2>
       <div style="flex: 1">
-        <h6 class="card-text">Change Collected:  UGX{{ sale.get_change }}</h6>
-        <a href="">
+        <h6 class="card-text">Change Collected:  UGX{{ sale.getChange }}</h6>
+        <a href="{% url 'receipt_detail' sale.id %}">
           <input
             type="submit"
             value="Final Receipt"
